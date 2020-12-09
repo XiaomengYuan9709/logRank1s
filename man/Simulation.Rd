@@ -4,32 +4,40 @@
 \alias{Simulation}
 \title{empirical type I error and power}
 \usage{
-Simulation(n, parameter, B = 10000, k, delta, m0, ta, tf)
+Simulation(n, parameter, B = 1000, k = 1, delta, m0, ta, tf)
 }
 \arguments{
 \item{n}{sample size}
 
-\item{parameter}{if true, calculate alpha, otherwise calculate power}
+\item{parameter}{logical value, if TRUE then calculate empirical alpha, if FALSE calculate empirical power}
 
-\item{B}{number of iterations used in simulation}
+\item{B}{number of iterations used in simulation (by default B = 1000)}
 
-\item{k}{shape parameter of survival functions (assumed to be Weibull).}
+\item{k}{shape parameter of survival functions (by default k = 1) from the standard population or historical control}
 
-\item{delta}{expected effect size.}
+\item{delta}{hazard ratio between the sample of interest and the standard population or historical control}
 
-\item{m0}{median survival time of the historical control sample, which shall be obtained from previous research.}
+\item{m0}{median survival time of the standard population or historical control}
 
 \item{ta}{length of accrual period, during which patients are recruited}
 
 \item{tf}{length of follow-up time, during which patients are monitored}
 }
 \value{
-type I error or power in one-sample log-rank test
+empirical type I error or empirical power in one-sample log-rank test
 }
 \description{
-calculate empirical type I error and power in one-sample log-rank test
+calculate empirical type I error and/or empirical power in one-sample log-rank test via simulation
 }
 \examples{
+calculate empirical type I error
 Simulation(n = 534, parameter = TRUE, B = 10000, ta = 3, tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)
+The result is 0.0472.
+
+calculate empirical power
 Simulation(n = 534, parameter = FALSE, B = 10000, ta = 3, tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)
+The result is 0.9052.
+
+The statistical methods used in this package and the examples mentioned in this document are based on methods and examples described in Wu, 2015.
+References: Wu, J. R. (2015). Sample size calculation for the one-sample log-rank test. Pharmaceutical   Statistics, 14, 26–33. https://doi.org/10.1002/pst.1654
 }

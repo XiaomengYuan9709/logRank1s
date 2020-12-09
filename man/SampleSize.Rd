@@ -4,29 +4,32 @@
 \alias{SampleSize}
 \title{sample size calculation in one-sample log-rank test}
 \usage{
-SampleSize(alpha, power, ta, tf, m0, delta, k)
+SampleSize(alpha = 0.05, power, ta, tf, m0, delta, k = 1)
 }
 \arguments{
-\item{alpha}{type I error rate}
+\item{alpha}{type I error rate, by default alpha = 0.05}
 
-\item{power}{desired power for your study}
+\item{power}{the desired power for the study you are planning}
 
 \item{ta}{length of accrual period, during which patients are recruited}
 
 \item{tf}{length of follow-up time, during which patients are monitored}
 
-\item{m0}{median survival time of the historical control sample, which shall be obtained from previous research.}
+\item{m0}{median survival time of the standard population or historical control, which can be obtained from previous literature or estimated directly from the standard population.}
 
-\item{delta}{expected effect size.}
+\item{delta}{hazard ratio between the sample of interest and the standard population or historical control.}
 
-\item{k}{shape parameter of survival functions (assumed to be Weibull).}
+\item{k}{shape parameter of survival functions (by default k = 1), can be obtained from the standard population or historical control.}
 }
 \value{
-sample size in one-sample log-rank test
+sample size in one-sample log-rank test, depends on the desired power
 }
 \description{
 calculate sample size in one-sample log-rank test
 }
 \examples{
-SampleSize(alpha = 0.05, power = 0.8, ta = 5, tf = 3, m0 = 9, delta = 0.57, k = 1.22)
+SampleSize(alpha = 0.05, power = 0.8, ta = 5, tf = 3, m0 = 9, delta = 1/1.75, k = 1.22), the result is 88.
+
+The statistical methods used in this package and the examples mentioned in this document are based on methods and examples described in Wu, 2015.
+References: Wu, J. R. (2015). Sample size calculation for the one-sample log-rank test. Pharmaceutical   Statistics, 14, 26–33. https://doi.org/10.1002/pst.1654
 }

@@ -6,15 +6,15 @@ Fp00 <- function(alpha, ta, tf, m0, delta, k) {
 
 
 
-        # survival function of standard sample assuming Weibull distribution S0(t) =
-        # exp(-log(2)*(t/m0)^k)
+        # survival function of standard sample assuming Weibull distribution
+        # S0(t) = exp(-log(2)*(t/m0)^k)
 
-        # hazard function assuming Weibull distribution lambda0(t) =
-        # k*(log(2)*t^(k-1)/m0^k
+        # hazard function assuming Weibull distribution
+        # lambda0(t) = k*(log(2)*t^(k-1)/m0^k
 
         # cumulative hazard H0(t) = log(2)(t/m0)^k
 
-        # objective function: S0(t)^delta*H0(t)*lambda0(t)
+        # S0(t)^delta*H0(t)*lambda0(t)
         (exp(-log(2) * (t/m0)^k)^delta) * (log(2) * (t/m0)^k) * (k * log(2) *
             t^(k - 1)/m0^k)
 
@@ -22,7 +22,7 @@ Fp00 <- function(alpha, ta, tf, m0, delta, k) {
 
     F2p00 <- function(t) {
 
-        # objective function: (tau-t)*S0(t)^delta*H0(t)*lambda0(t)
+        # (tau-t)*S0(t)^delta*H0(t)*lambda0(t)
         (tau - t) * (exp(-log(2) * (t/m0)^k)^delta) * (log(2) * (t/m0)^k) *
             (k * log(2) * t^(k - 1)/m0^k)
 

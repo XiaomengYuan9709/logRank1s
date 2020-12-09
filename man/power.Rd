@@ -4,10 +4,10 @@
 \alias{power}
 \title{power calculation in one-sample log-rank test}
 \usage{
-power(alpha, n, ta, tf, m0, delta, k)
+power(alpha = 0.05, n, ta, tf, m0, delta, k = 1)
 }
 \arguments{
-\item{alpha}{type I error rate}
+\item{alpha}{type I error rate, by default alpha = 0.05.}
 
 \item{n}{sample size}
 
@@ -15,11 +15,11 @@ power(alpha, n, ta, tf, m0, delta, k)
 
 \item{tf}{length of follow-up time, during which patients are monitored}
 
-\item{m0}{median survival time of the historical control sample, which shall be obtained from previous research.}
+\item{m0}{median survival time of the standard population or historical control, which can be obtained from previous literature or estimate directly from the standard population.}
 
-\item{delta}{expected effect size.}
+\item{delta}{hazard ratio between the sample of interest and the standard population or historical control}
 
-\item{k}{shape parameter of survival functions (assumed to be Weibull).}
+\item{k}{shape parameter of survival functions (by default k = 1), from the standard population or historical control.}
 }
 \value{
 power in one-sample log-rank test
@@ -28,5 +28,8 @@ power in one-sample log-rank test
 calculate power in one-sample log-rank test
 }
 \examples{
-power(alpha = 0.05, n = 88,  ta = 5, tf = 3, m0 = 9, delta = 4/7, k = 1.22)
+power(alpha = 0.05, n = 88,  ta = 5, tf = 3, m0 = 9, delta = 1/1.75, k = 1.22), the result is 0.803
+
+The statistical methods used in this package and the examples mentioned in this document are based on methods and examples described in Wu, 2015.
+References: Wu, J. R. (2015). Sample size calculation for the one-sample log-rank test. Pharmaceutical   Statistics, 14, 26–33. https://doi.org/10.1002/pst.1654
 }

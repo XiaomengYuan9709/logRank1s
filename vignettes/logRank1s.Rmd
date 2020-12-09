@@ -14,6 +14,114 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{r setup}
+```{r setup, message=FALSE}
 library(logRank1s)
 ```
+
+# Introduction
+The one-sample log-rank test is a type of statistical test that can be used when comparing survival distributions between a study sample that is going to be collected prospectively, and a standard population or historical control. This test can be employed in clinical trials and epidemiological studies. To make sure the planned study reaches a desired statistical power, researchers need to calculate the sample size of the study before they start to collect data. However, the previous methods developed for one-sample log-rank test tend to underestimate the required sample size. Therefore, a new method is proposed by Wu, 2015, using the exact variance under the alternative hypothesis to derive the sample size for one-sample log-rank test. Simulation study has been done (Wu, 2015) to show that the sample sizes calculated based on the new method has better performance compared to the two previous methods. The new method gives empirical type I error and empirical power that are closer to the nominal type I error and power, compared to previous methods.  
+As far as we know, currently there's no non-commercial software/package available that implements Wu's method to calculate sample size for the one-sample log-rank test. Therefore, the goal of this package is to provide functions that can be used by clinical and epidemiological researchers to calculate sample size, power, and perform simulation study to check empirical type I error and power in the one-sample log-rank test.  
+
+
+# Methods
+This method section gives a general introduction for the theoretical background and formulas used to derive algorithms implemented in this package, it can be skipped by readers who are mainly interested in the application of this package and the usage of the functions.  
+
+A one-sample log-rank test can have the following hypothesis, $$H_{0}:S(x)\leq S_{0}(x)$$  
+and $$H_{A}: S(x)> S_{0}(x)$$  
+Here $S(x)$ and $S_{0}(x)$ are survival functions of the new sample that will be collected during the study and the standard population, respectively. Assuming the propotional hazard assumption holds, we have $S(x) = (S_{0}(x))^{\delta}$ where $\delta$ is the hazard ratio. Therefore, the hypotheses can be re-written as
+$$H_{0}: \delta \geq  1$$ i.e, the new sample has lower or equal survival probability compared to the standard population
+$$H_{A}: \delta <  1$$ i.e, the new sample has higher survival probabilty compared to the standard population.  
+The test statistics of the one-sample log-rank test is defined as, $$L = \frac{O-E}{\sqrt{E}} = W/\hat{\sigma }\hspace{1cm}(1)$$  
+Here $O$ and $E$ are the observed vs. expected number of events. The test rejects the null hypothesis when $L < -z_{1-\alpha}$, where $z_{1-\alpha}$ is the $100(1-\alpha)$ percentile of the standard normal distribution.
+Based on this test statistic $L$, the exact mean of W, $E_{H_{A}}(W)=\sqrt{n}\omega$ and variance of W, $Var_{H_{A}}(W)=\sigma$ and other needed quantities ($\sigma_{0}$, $\omega$) can be derived (for details of derivation, see the Appendix in Wu, 2015), and then power can be calculated based on them using the following equation. 
+$$1-\beta = P(L < -z_{1-\alpha }\mid H_{A})\approx \Phi(-\frac{\sigma_{0}}{\sigma}z_{1-\alpha}-\frac{\sqrt{n}\omega}{\sigma})\hspace{1cm}(2)$$
+Based on the above equation (2), the required sample size can be obtained from this formula,
+$$n = \frac{(\sigma_{0}z_{1-\alpha} + \sigma z_{1-\beta})^2}{\omega^2}\hspace{1cm}(3)$$ 
+
+where $$\omega =\sigma _{1}^{2}-\sigma_{0}^{2}$$ 
+and $$\sigma ^{2} = \sigma _{1}^{2} - \sigma _{1}^{4} + 2p_{00}-\sigma _{0}^{4}-2p_{01} + 2\sigma _{0}^{2}\sigma _{1}^{2}$$
+
+The values of $\sigma_{0}, \sigma_{1}, p_{00}, p_{01}$ can be calculated based on the survival function $S_{0}(x)$ and the cumulative hazard function $\Lambda_{0}(x)$ of the standard population or historical control, the survival function of censoring time $G(x)$, and the expected hazard ratio $\delta$. Usually, $S_{0}(x)$ and $\Lambda_{0}(x)$ need to be obtained from previous literature or directly estimated from the standard population/historical control. The hazard ratio $\delta$ is the expected effect size of the study that might take some guesswork to obtain. The $G(x)$ used in this package is derived based on the assumption that patients join the study following a uniform distribution over the recruiting period $t_{a}$ and no one is lost to follow-up during the follow-up period $t_{f}$. $$G(x) = \left\{\begin{matrix}
+1, \hspace{1cm}x \leq t_{f}\\ 
+(t_{a}+t_{f} - x)/t_{a},\hspace{0.3cm}t_{f} < x\leq t_{a}+t_{f}\\ 
+\hspace{1.5cm}0,\hspace{1.8cm} otherwise
+\end{matrix}\right.$$ Using the following formulas, the functions in this package derive $\sigma_{0}, \sigma_{1}, p_{00}, p_{01}$ that are needed to calculate sample size based on equation(3) and power based on equation(2)
+
+$$\sigma _{0}^{2} = \int_{0}^{\infty}G(x)S_{0}^{\delta }(x)d\Lambda_{0}(x)$$
+$$\sigma _{1}^{2} = \int_{0}^{\infty}G(x)S_{0}^{\delta }(x)d(\delta\Lambda_{0}(x))$$
+
+$$p_{00} = \int_{0}^{\infty}G(x)S_{0}^{\delta }(x)\Lambda_{0}(x)d\Lambda_{0}(x)$$
+
+$$p_{01} = \int_{0}^{\infty}G(x)S_{0}^{\delta }(x)\Lambda_{0}(x)d(\delta\Lambda_{0}(x))$$
+  
+# Examples
+In this section, we are going to illustrate the usage of the functions in the `logRank1s` package, using examples provided in Wu, 2015.  
+The package can be installed either from a tar.gz file or from Github.
+```{r eval=F}
+# install from tar.gz
+install.packages(file.path("~/Desktop","logRank1s_0.0.0.9000.tar.gz"),repos=NULL,type="source")
+
+# install from Github
+devtools::install_github("XiaomengYuan9709/logRank1s")
+```
+
+
+## Sample Size Calculation
+The sample size calculation can be achieved using the function `SampleSize`, based on the equation (3) mentioned above.  
+Here we illustrate the usage of the function using the example given in Wu, 2014. First assume we need our study to have type I error rate $\alpha = 0.05$, and the desired is $power = 0.8,\hspace{0.1cm}0.85,\hspace{0.1cm}or\hspace{0.2cm}0.9$. We further assume in the current study patients will be recruited during a period $t_{a}= 5$ years and the length of follow-up time $t_{f}= 3$ years. If we have a standard population (or historical control) that can be used to compare with the yet to-be-collected new sample, we can first fit a parametric model (e.g., Weibull model) to estimate its survival function and assess the goodness-of-fit using Kaplan-Meier method. Here in this example, previous work was done with the standard population, which shows that, assuming a Weibull distribution, the survival function of the standard population (or historical control) can be described as $$S_{0} = exp(-log(2)(x/m_{0})^k)$$ where $k = 1.22$ is the estimated shape parameter and $m_{0}= 9$ is the median survival time in years. Alternatively, the median survival time and the shape parameter can be directly obtained from previous literature published for the standard population and/or historical control. In addition, the function `SampleSize` assumes a default k value equals to 1, which can be used when information about the shape parameter is not available from previous literature, and/or it can not be estimated from the standard population. The weibull distribution is used as it can have many different shapes of its curves with varied shape and rate parameters. For the hazard ratio, it might take some educated guess to obtain a reasonable value for this parameter. However, that is just something we has to deal with when planning for a future study. For a biostatistician/statistician, it is usually benefit to discuss with your colleges (who might be a physician, clinical researcher or just someone who is expert in the disease of interest), and then come up with a good estimation for the hazard ratio. Nevertheless, given a hazard ratio $\delta = 1/1.75$, and based on tall other conditions mentioned above, we can calculate the sample size for the one-sample log-rank test using the following code:
+
+```{r}
+# sample size for power = 0.8
+n1 <- SampleSize(alpha = 0.05, power = 0.8, ta = 5, tf = 3, m0 = 9, delta = 1/1.75, k = 1.22)
+n1
+
+# sample size for power = 0.85
+n2 <- SampleSize(alpha = 0.05, power = 0.85, ta = 5, tf = 3, m0 = 9, delta = 1/1.75, k = 1.22)
+n2
+
+# sample size for power = 0.9
+n3 <- SampleSize(alpha = 0.05, power = 0.9, ta = 5, tf = 3, m0 = 9, delta = 1/1.75, k = 1.22)
+n3
+```
+
+## Power Calcuation
+With the similar scenario described in the above example of the sample size calculation (despite now the sample size is known and power is unknown), we can show how the function `power` can be used to calculate power for a one-sample log-rank test. This function can be useful if you want to know what the power will be in your study using different sample sizes. The algorithm behind the function `power` is based on the equation (2) described in the introduction.
+```{r}
+# n = 88
+Power1 <- power(alpha = 0.05, n = 88,  ta = 5, tf = 3, m0 = 9, delta = 1/1.75, k = 1.22)
+Power1
+
+# n = 100
+Power2 <- power(alpha = 0.05, n = 100,  ta = 5, tf = 3, m0 = 9, delta = 1/1.75, k = 1.22)
+Power2
+
+# n = 117
+Power3 <- power(alpha = 0.05, n = 117,  ta = 5, tf = 3, m0 = 9, delta = 1/1.75, k = 1.22)
+Power3
+```
+
+## Simulation 
+The package also contains a function `Simulation` that can be used to obtain empirical type I error and/or empirical power using simulation method. The algorithm behind the `Simulation` function is based on equation(1) described in introduction related to the test statistic $L$.  
+We first show how to obtain the empirical type I error from a known sample size ($n=534$). Based on known accrual time $t_{a} = 3$ years, follow-up period $t_{f} = 1$ year, shape parameter $k = 0.1$ for the survival function $S_{0}(x)$, standard population median survival time $m_{0} = 1$ year, hazard ratio $\delta = 1/1.2$, and with iteration number $B$ set to be 10000, we can obtain the empirical type I error using following code:
+```{r}
+# setting parameter = T indicates calculating type I error.
+alpha <- Simulation(n = 534, parameter = TRUE, B = 10000, ta = 3, tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)
+
+alpha
+
+```
+
+Using a set of the same parameters, the empirical power can also be calculated based on known sample size, hazard ratio, etc.
+```{r}
+# setting parameter = F indicates calculating power.
+power_empirical <- Simulation(n = 534, parameter = FALSE, B = 10000, ta = 3, tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)
+
+power_empirical
+
+```
+
+The statistical methods used in this package and the examples mentioned in this vignettes are based on methods and examples described in Wu, 2015.
+
+References:
+Wu, J. R. (2015). Sample size calculation for the one-sample log-rank test. Pharmaceutical   Statistics, 14, 26–33. https://doi.org/10.1002/pst.1654
+

@@ -1,20 +1,23 @@
 ##' calculate power in one-sample log-rank test
 ##'
 ##' @title power calculation in one-sample log-rank test
-##' @param alpha type I error rate
+##' @param alpha type I error rate, by default alpha = 0.05.
 ##' @param n sample size
 ##' @param ta length of accrual period, during which patients are recruited
 ##' @param tf length of follow-up time, during which patients are monitored
-##' @param m0 median survival time of the historical control sample, which shall be obtained from previous research.
-##' @param delta expected effect size.
-##' @param k shape parameter of survival functions (assumed to be Weibull).
+##' @param m0 median survival time of the standard population or historical control, which can be obtained from previous literature or estimate directly from the standard population.
+##' @param delta hazard ratio between the sample of interest and the standard population or historical control
+##' @param k shape parameter of survival functions (by default k = 1), from the standard population or historical control.
 ##' @return power in one-sample log-rank test
 ##' @export
 ##' @import stats
 ##' @examples
-##' power(alpha = 0.05, n = 88,  ta = 5, tf = 3, m0 = 9, delta = 4/7, k = 1.22)
+##' power(alpha = 0.05, n = 88,  ta = 5, tf = 3, m0 = 9, delta = 1/1.75, k = 1.22), the result is 0.803
+##'
+##' The statistical methods used in this package and the examples mentioned in this document are based on methods and examples described in Wu, 2015.
+##' References: Wu, J. R. (2015). Sample size calculation for the one-sample log-rank test. Pharmaceutical   Statistics, 14, 26–33. https://doi.org/10.1002/pst.1654
 
-power <- function(alpha, n, ta, tf, m0, delta, k) {
+power <- function(alpha = 0.05, n, ta, tf, m0, delta, k=1) {
     p0 <- Fp0(alpha, ta, tf, m0, delta, k)
     p1 <- delta * p0
 
