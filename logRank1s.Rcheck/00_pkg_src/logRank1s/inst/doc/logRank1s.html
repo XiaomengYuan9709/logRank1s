@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+
+
+<title>logRank1s</title>
+
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
+<style type="text/css">
+a.anchor-section {margin-left: 10px; visibility: hidden; color: inherit;}
+a.anchor-section::before {content: '#';}
+.hasAnchor:hover a.anchor-section {visibility: visible;}
+</style>
+<script>// Anchor sections v1.0 written by Atsushi Yasumoto on Oct 3rd, 2020.
+document.addEventListener('DOMContentLoaded', function() {
+  // Do nothing if AnchorJS is used
+  if (typeof window.anchors === 'object' && anchors.hasOwnProperty('hasAnchorJSLink')) {
+    return;
+  }
+
+  const h = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+
+  // Do nothing if sections are already anchored
+  if (Array.from(h).some(x => x.classList.contains('hasAnchor'))) {
+    return null;
+  }
+
+  // Use section id when pandoc runs with --section-divs
+  const section_id = function(x) {
+    return ((x.classList.contains('section') || (x.tagName === 'SECTION'))
+            ? x.id : '');
+  };
+
+  // Add anchors
+  h.forEach(function(x) {
+    const id = x.id || section_id(x.parentElement);
+    if (id === '') {
+      return null;
+    }
+    let anchor = document.createElement('a');
+    anchor.href = '#' + id;
+    anchor.classList = ['anchor-section'];
+    x.classList.add('hasAnchor');
+    x.appendChild(anchor);
+  });
+});
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css" data-origin="pandoc">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">logRank1s</h1>
+
+
+
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(logRank1s)</span></code></pre></div>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>The one-sample log-rank test is a type of statistical test that can be used when comparing survival distributions between a study sample that is going to be collected prospectively, and a standard population or historical control. This test can be employed in clinical trials and epidemiological studies. To make sure the planned study reaches a desired statistical power, researchers need to calculate the sample size of the study before they start to collect data. However, the previous methods developed for one-sample log-rank test tend to underestimate the required sample size. Therefore, a new method is proposed by Wu, 2015, using the exact variance under the alternative hypothesis to derive the sample size for one-sample log-rank test. Simulation study has been done (Wu, 2015) to show that the sample sizes calculated based on the new method has better performance compared to the two previous methods. The new method gives empirical type I error and empirical power that are closer to the nominal type I error and power, compared to previous methods.<br />
+As far as we know, currently there’s no non-commercial software/package available that implements Wu’s method to calculate sample size for the one-sample log-rank test. Therefore, the goal of this package is to provide functions that can be used by clinical and epidemiological researchers to calculate sample size, power, and perform simulation study to check empirical type I error and power in the one-sample log-rank test.</p>
+</div>
+<div id="methods" class="section level1">
+<h1>Methods</h1>
+<p>This method section gives a general introduction for the theoretical background and formulas used to derive algorithms implemented in this package, it can be skipped by readers who are mainly interested in the application of this package and the usage of the functions.</p>
+<p>A one-sample log-rank test can have the following hypothesis, <span class="math display">\[H_{0}:S(x)\leq S_{0}(x)\]</span><br />
+and <span class="math display">\[H_{A}: S(x)&gt; S_{0}(x)\]</span><br />
+Here <span class="math inline">\(S(x)\)</span> and <span class="math inline">\(S_{0}(x)\)</span> are survival functions of the new sample that will be collected during the study and the standard population, respectively. Assuming the propotional hazard assumption holds, we have <span class="math inline">\(S(x) = (S_{0}(x))^{\delta}\)</span> where <span class="math inline">\(\delta\)</span> is the hazard ratio. Therefore, the hypotheses can be re-written as <span class="math display">\[H_{0}: \delta \geq  1\]</span> i.e, the new sample has lower or equal survival probability compared to the standard population <span class="math display">\[H_{A}: \delta &lt;  1\]</span> i.e, the new sample has higher survival probabilty compared to the standard population.<br />
+The test statistics of the one-sample log-rank test is defined as, <span class="math display">\[L = \frac{O-E}{\sqrt{E}} = W/\hat{\sigma }\hspace{1cm}(1)\]</span><br />
+Here <span class="math inline">\(O\)</span> and <span class="math inline">\(E\)</span> are the observed vs. expected number of events. The test rejects the null hypothesis when <span class="math inline">\(L &lt; -z_{1-\alpha}\)</span>, where <span class="math inline">\(z_{1-\alpha}\)</span> is the <span class="math inline">\(100(1-\alpha)\)</span> percentile of the standard normal distribution. Based on this test statistic <span class="math inline">\(L\)</span>, the exact mean of W, <span class="math inline">\(E_{H_{A}}(W)=\sqrt{n}\omega\)</span> and variance of W, <span class="math inline">\(Var_{H_{A}}(W)=\sigma\)</span> and other needed quantities (<span class="math inline">\(\sigma_{0}\)</span>, <span class="math inline">\(\omega\)</span>) can be derived (for details of derivation, see the Appendix in Wu, 2015), and then power can be calculated based on them using the following equation. <span class="math display">\[1-\beta = P(L &lt; -z_{1-\alpha }\mid H_{A})\approx \Phi(-\frac{\sigma_{0}}{\sigma}z_{1-\alpha}-\frac{\sqrt{n}\omega}{\sigma})\hspace{1cm}(2)\]</span> Based on the above equation (2), the required sample size can be obtained from this formula, <span class="math display">\[n = \frac{(\sigma_{0}z_{1-\alpha} + \sigma z_{1-\beta})^2}{\omega^2}\hspace{1cm}(3)\]</span></p>
+<p>where <span class="math display">\[\omega =\sigma _{1}^{2}-\sigma_{0}^{2}\]</span> and <span class="math display">\[\sigma ^{2} = \sigma _{1}^{2} - \sigma _{1}^{4} + 2p_{00}-\sigma _{0}^{4}-2p_{01} + 2\sigma _{0}^{2}\sigma _{1}^{2}\]</span></p>
+<p>The values of <span class="math inline">\(\sigma_{0}, \sigma_{1}, p_{00}, p_{01}\)</span> can be calculated based on the survival function <span class="math inline">\(S_{0}(x)\)</span> and the cumulative hazard function <span class="math inline">\(\Lambda_{0}(x)\)</span> of the standard population or historical control, the survival function of censoring time <span class="math inline">\(G(x)\)</span>, and the expected hazard ratio <span class="math inline">\(\delta\)</span>. Usually, <span class="math inline">\(S_{0}(x)\)</span> and <span class="math inline">\(\Lambda_{0}(x)\)</span> need to be obtained from previous literature or directly estimated from the standard population/historical control. The hazard ratio <span class="math inline">\(\delta\)</span> is the expected effect size of the study that might take some guesswork to obtain. The <span class="math inline">\(G(x)\)</span> used in this package is derived based on the assumption that patients join the study following a uniform distribution over the recruiting period <span class="math inline">\(t_{a}\)</span> and no one is lost to follow-up during the follow-up period <span class="math inline">\(t_{f}\)</span>. <span class="math display">\[G(x) = \left\{\begin{matrix}
+1, \hspace{1cm}x \leq t_{f}\\ 
+(t_{a}+t_{f} - x)/t_{a},\hspace{0.3cm}t_{f} &lt; x\leq t_{a}+t_{f}\\ 
+\hspace{1.5cm}0,\hspace{1.8cm} otherwise
+\end{matrix}\right.\]</span> Using the following formulas, the functions in this package derive <span class="math inline">\(\sigma_{0}, \sigma_{1}, p_{00}, p_{01}\)</span> that are needed to calculate sample size based on equation(3) and power based on equation(2)</p>
+<p><span class="math display">\[\sigma _{0}^{2} = \int_{0}^{\infty}G(x)S_{0}^{\delta }(x)d\Lambda_{0}(x)\]</span> <span class="math display">\[\sigma _{1}^{2} = \int_{0}^{\infty}G(x)S_{0}^{\delta }(x)d(\delta\Lambda_{0}(x))\]</span></p>
+<p><span class="math display">\[p_{00} = \int_{0}^{\infty}G(x)S_{0}^{\delta }(x)\Lambda_{0}(x)d\Lambda_{0}(x)\]</span></p>
+<p><span class="math display">\[p_{01} = \int_{0}^{\infty}G(x)S_{0}^{\delta }(x)\Lambda_{0}(x)d(\delta\Lambda_{0}(x))\]</span></p>
+</div>
+<div id="examples" class="section level1">
+<h1>Examples</h1>
+<p>In this section, we are going to illustrate the usage of the functions in the <code>logRank1s</code> package, using examples provided in Wu, 2015.<br />
+The package can be installed either from a tar.gz file or from Github.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># install from tar.gz</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">install.packages</span>(<span class="kw">file.path</span>(<span class="st">&quot;~/Desktop&quot;</span>,<span class="st">&quot;logRank1s_0.0.0.9000.tar.gz&quot;</span>),<span class="dt">repos=</span><span class="ot">NULL</span>,<span class="dt">type=</span><span class="st">&quot;source&quot;</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a></span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="co"># install from Github</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;XiaomengYuan9709/logRank1s&quot;</span>)</span></code></pre></div>
+<div id="sample-size-calculation" class="section level2">
+<h2>Sample Size Calculation</h2>
+<p>The sample size calculation can be achieved using the function <code>SampleSize</code>, based on the equation (3) mentioned above.<br />
+Here we illustrate the usage of the function using the example given in Wu, 2014. First assume we need our study to have type I error rate <span class="math inline">\(\alpha = 0.05\)</span>, and the desired is <span class="math inline">\(power = 0.8,\hspace{0.1cm}0.85,\hspace{0.1cm}or\hspace{0.2cm}0.9\)</span>. We further assume in the current study patients will be recruited during a period <span class="math inline">\(t_{a}= 5\)</span> years and the length of follow-up time <span class="math inline">\(t_{f}= 3\)</span> years. If we have a standard population (or historical control) that can be used to compare with the yet to-be-collected new sample, we can first fit a parametric model (e.g., Weibull model) to estimate its survival function and assess the goodness-of-fit using Kaplan-Meier method. Here in this example, previous work was done with the standard population, which shows that, assuming a Weibull distribution, the survival function of the standard population (or historical control) can be described as <span class="math display">\[S_{0} = exp(-log(2)(x/m_{0})^k)\]</span> where <span class="math inline">\(k = 1.22\)</span> is the estimated shape parameter and <span class="math inline">\(m_{0}= 9\)</span> is the median survival time in years. Alternatively, the median survival time and the shape parameter can be directly obtained from previous literature published for the standard population and/or historical control. In addition, the function <code>SampleSize</code> assumes a default k value equals to 1, which can be used when information about the shape parameter is not available from previous literature, and/or it can not be estimated from the standard population. The weibull distribution is used as it can have many different shapes of its curves with varied shape and rate parameters. For the hazard ratio, it might take some educated guess to obtain a reasonable value for this parameter. However, that is just something we has to deal with when planning for a future study. For a biostatistician/statistician, it is usually benefit to discuss with your colleges (who might be a physician, clinical researcher or just someone who is expert in the disease of interest), and then come up with a good estimation for the hazard ratio. Nevertheless, given a hazard ratio <span class="math inline">\(\delta = 1/1.75\)</span>, and based on tall other conditions mentioned above, we can calculate the sample size for the one-sample log-rank test using the following code:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># sample size for power = 0.8</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>n1 &lt;-<span class="st"> </span><span class="kw">SampleSize</span>(<span class="dt">alpha =</span> <span class="fl">0.05</span>, <span class="dt">power =</span> <span class="fl">0.8</span>, <span class="dt">ta =</span> <span class="dv">5</span>, <span class="dt">tf =</span> <span class="dv">3</span>, <span class="dt">m0 =</span> <span class="dv">9</span>, <span class="dt">delta =</span> <span class="dv">1</span><span class="op">/</span><span class="fl">1.75</span>, <span class="dt">k =</span> <span class="fl">1.22</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a>n1</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="co">#&gt; [1] 88</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co"># sample size for power = 0.85</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>n2 &lt;-<span class="st"> </span><span class="kw">SampleSize</span>(<span class="dt">alpha =</span> <span class="fl">0.05</span>, <span class="dt">power =</span> <span class="fl">0.85</span>, <span class="dt">ta =</span> <span class="dv">5</span>, <span class="dt">tf =</span> <span class="dv">3</span>, <span class="dt">m0 =</span> <span class="dv">9</span>, <span class="dt">delta =</span> <span class="dv">1</span><span class="op">/</span><span class="fl">1.75</span>, <span class="dt">k =</span> <span class="fl">1.22</span>)</span>
+<span id="cb3-8"><a href="#cb3-8"></a>n2</span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">#&gt; [1] 100</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co"># sample size for power = 0.9</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>n3 &lt;-<span class="st"> </span><span class="kw">SampleSize</span>(<span class="dt">alpha =</span> <span class="fl">0.05</span>, <span class="dt">power =</span> <span class="fl">0.9</span>, <span class="dt">ta =</span> <span class="dv">5</span>, <span class="dt">tf =</span> <span class="dv">3</span>, <span class="dt">m0 =</span> <span class="dv">9</span>, <span class="dt">delta =</span> <span class="dv">1</span><span class="op">/</span><span class="fl">1.75</span>, <span class="dt">k =</span> <span class="fl">1.22</span>)</span>
+<span id="cb3-13"><a href="#cb3-13"></a>n3</span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt; [1] 117</span></span></code></pre></div>
+</div>
+<div id="power-calcuation" class="section level2">
+<h2>Power Calcuation</h2>
+<p>With the similar scenario described in the above example of the sample size calculation (despite now the sample size is known and power is unknown), we can show how the function <code>power</code> can be used to calculate power for a one-sample log-rank test. This function can be useful if you want to know what the power will be in your study using different sample sizes. The algorithm behind the function <code>power</code> is based on the equation (2) described in the introduction.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># n = 88</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>Power1 &lt;-<span class="st"> </span><span class="kw">power</span>(<span class="dt">alpha =</span> <span class="fl">0.05</span>, <span class="dt">n =</span> <span class="dv">88</span>,  <span class="dt">ta =</span> <span class="dv">5</span>, <span class="dt">tf =</span> <span class="dv">3</span>, <span class="dt">m0 =</span> <span class="dv">9</span>, <span class="dt">delta =</span> <span class="dv">1</span><span class="op">/</span><span class="fl">1.75</span>, <span class="dt">k =</span> <span class="fl">1.22</span>)</span>
+<span id="cb4-3"><a href="#cb4-3"></a>Power1</span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt; [1] 0.803</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co"># n = 100</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>Power2 &lt;-<span class="st"> </span><span class="kw">power</span>(<span class="dt">alpha =</span> <span class="fl">0.05</span>, <span class="dt">n =</span> <span class="dv">100</span>,  <span class="dt">ta =</span> <span class="dv">5</span>, <span class="dt">tf =</span> <span class="dv">3</span>, <span class="dt">m0 =</span> <span class="dv">9</span>, <span class="dt">delta =</span> <span class="dv">1</span><span class="op">/</span><span class="fl">1.75</span>, <span class="dt">k =</span> <span class="fl">1.22</span>)</span>
+<span id="cb4-8"><a href="#cb4-8"></a>Power2</span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">#&gt; [1] 0.851</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co"># n = 117</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>Power3 &lt;-<span class="st"> </span><span class="kw">power</span>(<span class="dt">alpha =</span> <span class="fl">0.05</span>, <span class="dt">n =</span> <span class="dv">117</span>,  <span class="dt">ta =</span> <span class="dv">5</span>, <span class="dt">tf =</span> <span class="dv">3</span>, <span class="dt">m0 =</span> <span class="dv">9</span>, <span class="dt">delta =</span> <span class="dv">1</span><span class="op">/</span><span class="fl">1.75</span>, <span class="dt">k =</span> <span class="fl">1.22</span>)</span>
+<span id="cb4-13"><a href="#cb4-13"></a>Power3</span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="co">#&gt; [1] 0.901</span></span></code></pre></div>
+</div>
+<div id="simulation" class="section level2">
+<h2>Simulation</h2>
+<p>The package also contains a function <code>Simulation</code> that can be used to obtain empirical type I error and/or empirical power using simulation method. The algorithm behind the <code>Simulation</code> function is based on equation(1) described in introduction related to the test statistic <span class="math inline">\(L\)</span>.<br />
+We first show how to obtain the empirical type I error from a known sample size (<span class="math inline">\(n=534\)</span>). Based on known accrual time <span class="math inline">\(t_{a} = 3\)</span> years, follow-up period <span class="math inline">\(t_{f} = 1\)</span> year, shape parameter <span class="math inline">\(k = 0.1\)</span> for the survival function <span class="math inline">\(S_{0}(x)\)</span>, standard population median survival time <span class="math inline">\(m_{0} = 1\)</span> year, hazard ratio <span class="math inline">\(\delta = 1/1.2\)</span>, and with iteration number <span class="math inline">\(B\)</span> set to be 10000, we can obtain the empirical type I error using following code:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># setting parameter = T indicates calculating type I error.</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>alpha &lt;-<span class="st"> </span><span class="kw">Simulation</span>(<span class="dt">n =</span> <span class="dv">534</span>, <span class="dt">parameter =</span> <span class="ot">TRUE</span>, <span class="dt">B =</span> <span class="dv">10000</span>, <span class="dt">ta =</span> <span class="dv">3</span>, <span class="dt">tf =</span> <span class="dv">1</span>, <span class="dt">m0 =</span> <span class="dv">1</span>, <span class="dt">delta =</span> <span class="dv">1</span><span class="op">/</span><span class="fl">1.2</span>, <span class="dt">k =</span> <span class="fl">0.1</span>)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a>alpha</span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">#&gt; [1] 0.0472</span></span></code></pre></div>
+<p>Using a set of the same parameters, the empirical power can also be calculated based on known sample size, hazard ratio, etc.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="co"># setting parameter = F indicates calculating power.</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>power_empirical &lt;-<span class="st"> </span><span class="kw">Simulation</span>(<span class="dt">n =</span> <span class="dv">534</span>, <span class="dt">parameter =</span> <span class="ot">FALSE</span>, <span class="dt">B =</span> <span class="dv">10000</span>, <span class="dt">ta =</span> <span class="dv">3</span>, <span class="dt">tf =</span> <span class="dv">1</span>, <span class="dt">m0 =</span> <span class="dv">1</span>, <span class="dt">delta =</span> <span class="dv">1</span><span class="op">/</span><span class="fl">1.2</span>, <span class="dt">k =</span> <span class="fl">0.1</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a></span>
+<span id="cb6-4"><a href="#cb6-4"></a>power_empirical</span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt; [1] 0.9052</span></span></code></pre></div>
+</div>
+</div>
+<div id="limitations" class="section level1">
+<h1>Limitations</h1>
+<p>As we described, the algorithm used in this package assumes two conditions: 1) The proportional hazard assumption holds between the survival distributions of the sample of interest and the standard population, 2) The survival functions of the sample of interest and the standard population follow the weibull distribution. Therefore, researchers need at least test for the proportional hazard assumption, once data collection for the sample of interest is done. As mentioned, the weibull distribution is assumed due to its flexibility in terms of the shapes it can take. However, it can’t hurt, given the accessibility of the previous literature and/or the actual data of the standard population, if the researchers decide to check whether the survival distribution can be adequately fit under the assumption of Weibull distribution, before they use this package to make plan for the sample size of the study.</p>
+<p>The statistical methods used in this package and the examples mentioned in this vignettes are based on methods and examples described in Wu, 2015.</p>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<p>Wu, J. R. (2015). Sample size calculation for the one-sample log-rank test. Pharmaceutical Statistics, 14, 26–33. <a href="https://doi.org/10.1002/pst.1654" class="uri">https://doi.org/10.1002/pst.1654</a></p>
+</div>
+
+
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

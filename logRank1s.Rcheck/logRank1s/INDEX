@@ -1,0 +1,4 @@
+SampleSize              sample size calculation in one-sample log-rank
+                        test
+Simulation              empirical type I error and power
+power                   power calculation in one-sample log-rank test
