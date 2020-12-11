@@ -36,6 +36,6 @@ power <- function(alpha = 0.05, n, ta, tf, m0, delta, k=1) {
     sigma <- (p1 - p1^2 + 2 * p00 - p0^2 - 2 * p01 + 2 * p0 * p1)^0.5
 
     power <- round(pnorm(-p0^0.5 * qnorm(1 - alpha)/sigma - n^0.5 * w/sigma),3)
-
+    return(power)
 }
 
