@@ -35,11 +35,13 @@ flush(stderr()); flush(stdout())
 
 ### ** Examples
 
-a <- Simulation(n = 534, parameter = TRUE, B = 10000, ta = 3, tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)
+a <- Simulation(n = 534, parameter = TRUE, B = 10000, ta = 3, tf = 1,
+m0 = 1, delta = 1/1.2, k = 0.1)
 # parameter = T, calculate empirical type I error
 # a = 0.0472
 
-b <- Simulation(n = 534, parameter = FALSE, B = 10000, ta = 3, tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)
+b <- Simulation(n = 534, parameter = FALSE, B = 10000, ta = 3, tf = 1,
+m0 = 1, delta = 1/1.2, k = 0.1)
 # parameter = T, calculate empirical power
 # b = 0.9052
 

@@ -368,15 +368,16 @@ code > span.er { color: #a61717; background-color: #e3d2d2; }
 
 
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">library</span>(logRank1s)</span></code></pre></div>
-<div id="introduction" class="section level1">
-<h1>Introduction</h1>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
 <p>The one-sample log-rank test is a type of statistical test that can be used when comparing survival distributions between a study sample that is going to be collected prospectively, and a standard population or historical control. This test can be employed in clinical trials and epidemiological studies. To make sure the planned study reaches a desired statistical power, researchers need to calculate the sample size of the study before they start to collect data. However, the previous methods developed for one-sample log-rank test tend to underestimate the required sample size. Therefore, a new method is proposed by Wu, 2015, using the exact variance under the alternative hypothesis to derive the sample size for one-sample log-rank test. Simulation study has been done (Wu, 2015) to show that the sample sizes calculated based on the new method has better performance compared to the two previous methods. The new method gives empirical type I error and empirical power that are closer to the nominal type I error and power, compared to previous methods.<br />
-As far as we know, currently there’s no non-commercial software/package available that implements Wu’s method to calculate sample size for the one-sample log-rank test. Therefore, the goal of this package is to provide functions that can be used by clinical and epidemiological researchers to calculate sample size, power, and perform simulation study to check empirical type I error and power in the one-sample log-rank test.</p>
+As far as we know, currently there’s no non-commercial software/package available that implements Wu’s method to calculate sample size for the one-sample log-rank test. Therefore, the goal of this package is to provide functions that can be used by clinical and epidemiological researchers to calculate sample size, power, and perform simulation study to check empirical type I error and power in the one-sample log-rank test.<br />
+The statistical methods used in this package and the examples mentioned in this vignettes are based on methods and examples described in Wu, 2015.</p>
 </div>
-<div id="methods" class="section level1">
-<h1>Methods</h1>
-<p>This method section gives a general introduction for the theoretical background and formulas used to derive algorithms implemented in this package, it can be skipped by readers who are mainly interested in the application of this package and the usage of the functions.</p>
-<p>A one-sample log-rank test can have the following hypothesis, <span class="math display">\[H_{0}:S(x)\leq S_{0}(x)\]</span><br />
+<div id="methods" class="section level2">
+<h2>Methods</h2>
+<p>This method section gives a general introduction for the theoretical background and formulas used to derive algorithms implemented in this package, it can be skipped by readers who are mainly interested in the application of this package and the usage of the functions.<br />
+A one-sample log-rank test can have the following hypothesis, <span class="math display">\[H_{0}:S(x)\leq S_{0}(x)\]</span><br />
 and <span class="math display">\[H_{A}: S(x)&gt; S_{0}(x)\]</span><br />
 Here <span class="math inline">\(S(x)\)</span> and <span class="math inline">\(S_{0}(x)\)</span> are survival functions of the new sample that will be collected during the study and the standard population, respectively. Assuming the propotional hazard assumption holds, we have <span class="math inline">\(S(x) = (S_{0}(x))^{\delta}\)</span> where <span class="math inline">\(\delta\)</span> is the hazard ratio. Therefore, the hypotheses can be re-written as <span class="math display">\[H_{0}: \delta \geq  1\]</span> i.e, the new sample has lower or equal survival probability compared to the standard population <span class="math display">\[H_{A}: \delta &lt;  1\]</span> i.e, the new sample has higher survival probabilty compared to the standard population.<br />
 The test statistics of the one-sample log-rank test is defined as, <span class="math display">\[L = \frac{O-E}{\sqrt{E}} = W/\hat{\sigma }\hspace{1cm}(1)\]</span><br />
@@ -391,8 +392,8 @@ Here <span class="math inline">\(O\)</span> and <span class="math inline">\(E\)<
 <p><span class="math display">\[p_{00} = \int_{0}^{\infty}G(x)S_{0}^{\delta }(x)\Lambda_{0}(x)d\Lambda_{0}(x)\]</span></p>
 <p><span class="math display">\[p_{01} = \int_{0}^{\infty}G(x)S_{0}^{\delta }(x)\Lambda_{0}(x)d(\delta\Lambda_{0}(x))\]</span></p>
 </div>
-<div id="examples" class="section level1">
-<h1>Examples</h1>
+<div id="examples" class="section level2">
+<h2>Examples</h2>
 <p>In this section, we are going to illustrate the usage of the functions in the <code>logRank1s</code> package, using examples provided in Wu, 2015.<br />
 The package can be installed either from a tar.gz file or from Github.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># install from tar.gz</span></span>
@@ -400,8 +401,8 @@ The package can be installed either from a tar.gz file or from Github.</p>
 <span id="cb2-3"><a href="#cb2-3"></a></span>
 <span id="cb2-4"><a href="#cb2-4"></a><span class="co"># install from Github</span></span>
 <span id="cb2-5"><a href="#cb2-5"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;XiaomengYuan9709/logRank1s&quot;</span>)</span></code></pre></div>
-<div id="sample-size-calculation" class="section level2">
-<h2>Sample Size Calculation</h2>
+<div id="sample-size-calculation" class="section level3">
+<h3>Sample Size Calculation</h3>
 <p>The sample size calculation can be achieved using the function <code>SampleSize</code>, based on the equation (3) mentioned above.<br />
 Here we illustrate the usage of the function using the example given in Wu, 2014. First assume we need our study to have type I error rate <span class="math inline">\(\alpha = 0.05\)</span>, and the desired is <span class="math inline">\(power = 0.8,\hspace{0.1cm}0.85,\hspace{0.1cm}or\hspace{0.2cm}0.9\)</span>. We further assume in the current study patients will be recruited during a period <span class="math inline">\(t_{a}= 5\)</span> years and the length of follow-up time <span class="math inline">\(t_{f}= 3\)</span> years. If we have a standard population (or historical control) that can be used to compare with the yet to-be-collected new sample, we can first fit a parametric model (e.g., Weibull model) to estimate its survival function and assess the goodness-of-fit using Kaplan-Meier method. Here in this example, previous work was done with the standard population, which shows that, assuming a Weibull distribution, the survival function of the standard population (or historical control) can be described as <span class="math display">\[S_{0} = exp(-log(2)(x/m_{0})^k)\]</span> where <span class="math inline">\(k = 1.22\)</span> is the estimated shape parameter and <span class="math inline">\(m_{0}= 9\)</span> is the median survival time in years. Alternatively, the median survival time and the shape parameter can be directly obtained from previous literature published for the standard population and/or historical control. In addition, the function <code>SampleSize</code> assumes a default k value equals to 1, which can be used when information about the shape parameter is not available from previous literature, and/or it can not be estimated from the standard population. The weibull distribution is used as it can have many different shapes of its curves with varied shape and rate parameters. For the hazard ratio, it might take some educated guess to obtain a reasonable value for this parameter. However, that is just something we has to deal with when planning for a future study. For a biostatistician/statistician, it is usually benefit to discuss with your colleges (who might be a physician, clinical researcher or just someone who is expert in the disease of interest), and then come up with a good estimation for the hazard ratio. Nevertheless, given a hazard ratio <span class="math inline">\(\delta = 1/1.75\)</span>, and based on tall other conditions mentioned above, we can calculate the sample size for the one-sample log-rank test using the following code:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># sample size for power = 0.8</span></span>
@@ -419,8 +420,8 @@ Here we illustrate the usage of the function using the example given in Wu, 2014
 <span id="cb3-13"><a href="#cb3-13"></a>n3</span>
 <span id="cb3-14"><a href="#cb3-14"></a><span class="co">#&gt; [1] 117</span></span></code></pre></div>
 </div>
-<div id="power-calcuation" class="section level2">
-<h2>Power Calcuation</h2>
+<div id="power-calcuation" class="section level3">
+<h3>Power Calcuation</h3>
 <p>With the similar scenario described in the above example of the sample size calculation (despite now the sample size is known and power is unknown), we can show how the function <code>power</code> can be used to calculate power for a one-sample log-rank test. This function can be useful if you want to know what the power will be in your study using different sample sizes. The algorithm behind the function <code>power</code> is based on the equation (2) described in the introduction.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># n = 88</span></span>
 <span id="cb4-2"><a href="#cb4-2"></a>Power1 &lt;-<span class="st"> </span><span class="kw">power</span>(<span class="dt">alpha =</span> <span class="fl">0.05</span>, <span class="dt">n =</span> <span class="dv">88</span>,  <span class="dt">ta =</span> <span class="dv">5</span>, <span class="dt">tf =</span> <span class="dv">3</span>, <span class="dt">m0 =</span> <span class="dv">9</span>, <span class="dt">delta =</span> <span class="dv">1</span><span class="op">/</span><span class="fl">1.75</span>, <span class="dt">k =</span> <span class="fl">1.22</span>)</span>
@@ -437,9 +438,9 @@ Here we illustrate the usage of the function using the example given in Wu, 2014
 <span id="cb4-13"><a href="#cb4-13"></a>Power3</span>
 <span id="cb4-14"><a href="#cb4-14"></a><span class="co">#&gt; [1] 0.901</span></span></code></pre></div>
 </div>
-<div id="simulation" class="section level2">
-<h2>Simulation</h2>
-<p>The package also contains a function <code>Simulation</code> that can be used to obtain empirical type I error and/or empirical power using simulation method. The algorithm behind the <code>Simulation</code> function is based on equation(1) described in introduction related to the test statistic <span class="math inline">\(L\)</span>.<br />
+<div id="simulation" class="section level3">
+<h3>Simulation</h3>
+<p>The package also contains a function <code>Simulation</code> that can be used to obtain empirical type I error and/or empirical power using simulation method. The algorithm behind the <code>Simulation</code> function is based on equation (1) described in introduction related to the test statistic <span class="math inline">\(L\)</span>.<br />
 We first show how to obtain the empirical type I error from a known sample size (<span class="math inline">\(n=534\)</span>). Based on known accrual time <span class="math inline">\(t_{a} = 3\)</span> years, follow-up period <span class="math inline">\(t_{f} = 1\)</span> year, shape parameter <span class="math inline">\(k = 0.1\)</span> for the survival function <span class="math inline">\(S_{0}(x)\)</span>, standard population median survival time <span class="math inline">\(m_{0} = 1\)</span> year, hazard ratio <span class="math inline">\(\delta = 1/1.2\)</span>, and with iteration number <span class="math inline">\(B\)</span> set to be 10000, we can obtain the empirical type I error using following code:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># setting parameter = T indicates calculating type I error.</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a>alpha &lt;-<span class="st"> </span><span class="kw">Simulation</span>(<span class="dt">n =</span> <span class="dv">534</span>, <span class="dt">parameter =</span> <span class="ot">TRUE</span>, <span class="dt">B =</span> <span class="dv">10000</span>, <span class="dt">ta =</span> <span class="dv">3</span>, <span class="dt">tf =</span> <span class="dv">1</span>, <span class="dt">m0 =</span> <span class="dv">1</span>, <span class="dt">delta =</span> <span class="dv">1</span><span class="op">/</span><span class="fl">1.2</span>, <span class="dt">k =</span> <span class="fl">0.1</span>)</span>
@@ -454,13 +455,12 @@ We first show how to obtain the empirical type I error from a known sample size 
 <span id="cb6-5"><a href="#cb6-5"></a><span class="co">#&gt; [1] 0.9052</span></span></code></pre></div>
 </div>
 </div>
-<div id="limitations" class="section level1">
-<h1>Limitations</h1>
-<p>As we described, the algorithm used in this package assumes two conditions: 1) The proportional hazard assumption holds between the survival distributions of the sample of interest and the standard population, 2) The survival functions of the sample of interest and the standard population follow the weibull distribution. Therefore, researchers need at least test for the proportional hazard assumption, once data collection for the sample of interest is done. As mentioned, the weibull distribution is assumed due to its flexibility in terms of the shapes it can take. However, it can’t hurt, given the accessibility of the previous literature and/or the actual data of the standard population, if the researchers decide to check whether the survival distribution can be adequately fit under the assumption of Weibull distribution, before they use this package to make plan for the sample size of the study.</p>
-<p>The statistical methods used in this package and the examples mentioned in this vignettes are based on methods and examples described in Wu, 2015.</p>
+<div id="limitations" class="section level2">
+<h2>Limitations</h2>
+<p>As we described, the algorithm used in this package assumes two conditions: 1) The proportional hazard assumption holds between the survival distributions of the sample of interest and the standard population, 2) The survival functions of the sample of interest and the standard population follow the Weibull distribution. Therefore, researchers need at least test for the proportional hazard assumption, once data collection for the sample of interest is done. As mentioned, the weibull distribution is assumed due to its flexibility in terms of the shapes it can take. However, it can’t hurt, given the accessibility of the previous literature and/or the actual data of the standard population, if the researchers decide to check whether the survival distribution can be adequately fit under the assumption of Weibull distribution, before they use this package to make plan for the sample size of the study.</p>
 </div>
-<div id="references" class="section level1">
-<h1>References</h1>
+<div id="references" class="section level2">
+<h2>References</h2>
 <p>Wu, J. R. (2015). Sample size calculation for the one-sample log-rank test. Pharmaceutical Statistics, 14, 26–33. <a href="https://doi.org/10.1002/pst.1654" class="uri">https://doi.org/10.1002/pst.1654</a></p>
 </div>
 

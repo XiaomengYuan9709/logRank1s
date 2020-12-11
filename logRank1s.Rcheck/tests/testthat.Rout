@@ -33,4 +33,4 @@ The following object is masked from 'package:stats':
 > 
 > proc.time()
    user  system elapsed 
-  2.111   0.076   2.168 
+  2.141   0.089   2.212 

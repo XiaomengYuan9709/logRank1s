@@ -13,11 +13,13 @@
 ##' @export
 ##' @import stats
 ##' @examples
-##' a <- Simulation(n = 534, parameter = TRUE, B = 10000, ta = 3, tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)
+##' a <- Simulation(n = 534, parameter = TRUE, B = 10000, ta = 3, tf = 1,
+##' m0 = 1, delta = 1/1.2, k = 0.1)
 ##' # parameter = T, calculate empirical type I error
 ##' # a = 0.0472
 ##'
-##' b <- Simulation(n = 534, parameter = FALSE, B = 10000, ta = 3, tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)
+##' b <- Simulation(n = 534, parameter = FALSE, B = 10000, ta = 3, tf = 1,
+##' m0 = 1, delta = 1/1.2, k = 0.1)
 ##' # parameter = T, calculate empirical power
 ##' # b = 0.9052
 ##'
@@ -25,7 +27,14 @@
 ##' Wu, J. R. (2015). Sample size calculation for the one-sample log-rank test. Pharmaceutical   Statistics, 14, 26–33. https://doi.org/10.1002/pst.1654
 
 
-Simulation <- function(n, parameter, B=1000, k = 1, delta, m0, ta, tf) {
+Simulation <- function(n, parameter, B=1000, ta, tf, m0, delta, k = 1) {
+    stopifnot(is.numeric(n), is.logical(parameter), is.numeric(B),
+              is.numeric(ta), is.numeric(tf),
+              is.numeric(m0), is.numeric(delta),
+              is.numeric(k), B > 0,
+              n > 0, ta > 0, tf > 0, m0 > 0, delta > 0, k > 0,
+              n %% 1 == 0, B %% 1 == 0)
+
     tau <- ta + tf
     # if T, use lambda = lambda0 under H0; if F, use lambda = lambda1 under H1
     lambda <- ifelse(parameter == TRUE,

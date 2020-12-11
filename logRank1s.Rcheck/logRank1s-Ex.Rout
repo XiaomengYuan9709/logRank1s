@@ -61,11 +61,13 @@ The following object is masked from ‘package:stats’:
 > 
 > ### ** Examples
 > 
-> a <- Simulation(n = 534, parameter = TRUE, B = 10000, ta = 3, tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)
+> a <- Simulation(n = 534, parameter = TRUE, B = 10000, ta = 3, tf = 1,
++ m0 = 1, delta = 1/1.2, k = 0.1)
 > # parameter = T, calculate empirical type I error
 > # a = 0.0472
 > 
-> b <- Simulation(n = 534, parameter = FALSE, B = 10000, ta = 3, tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)
+> b <- Simulation(n = 534, parameter = FALSE, B = 10000, ta = 3, tf = 1,
++ m0 = 1, delta = 1/1.2, k = 0.1)
 > # parameter = T, calculate empirical power
 > # b = 0.9052
 > 
@@ -95,7 +97,7 @@ The following object is masked from ‘package:stats’:
 > cleanEx()
 > options(digits = 7L)
 > base::cat("Time elapsed: ", proc.time() - base::get("ptime", pos = 'CheckExEnv'),"\n")
-Time elapsed:  11.979 0.045 12.065 0 0 
+Time elapsed:  12.407 0.035 12.463 0 0 
 > grDevices::dev.off()
 null device 
           1 

@@ -19,6 +19,13 @@
 ##' Wu, J. R. (2015). Sample size calculation for the one-sample log-rank test. Pharmaceutical   Statistics, 14, 26–33. https://doi.org/10.1002/pst.1654
 
 power <- function(alpha = 0.05, n, ta, tf, m0, delta, k=1) {
+    stopifnot(is.numeric(alpha), is.numeric(n),
+              is.numeric(ta), is.numeric(tf),
+              is.numeric(m0), is.numeric(delta),
+              is.numeric(k), alpha > 0 & alpha < 1,
+              n > 0, ta > 0, tf > 0, m0 > 0, delta > 0, k > 0,
+              n %% 1 == 0)
+
     p0 <- Fp0(alpha, ta, tf, m0, delta, k)
     p1 <- delta * p0
 

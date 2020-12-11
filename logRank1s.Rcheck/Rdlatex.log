@@ -72,34 +72,25 @@ No file Rd2.aux.
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [1{/usr/local/texl
 ive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [2]
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
-Overfull \hbox (36.78104pt too wide) in paragraph at lines 167--167
- []\T1/zi4/m/n/9 a <- Simulation(n = 534, parameter = TRUE, B = 10000, ta = 3, 
-tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)[] 
-
-Overfull \hbox (41.28104pt too wide) in paragraph at lines 171--171
- []\T1/zi4/m/n/9 b <- Simulation(n = 534, parameter = FALSE, B = 10000, ta = 3,
- tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)[] 
-[3]
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [3]
 No file Rd2.ind.
 [4]
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.aux)
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.aux)
 
 Package rerunfilecheck Warning: File `Rd2.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
 
- )
-(see the transcript file for additional information){/usr/local/texlive/2015/te
-xmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2015/texmf-dist/fonts/
-enc/dvips/inconsolata/i4-t1-0.enc}</usr/local/texlive/2015/texmf-dist/fonts/typ
-e1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2015/texmf-dist/
-fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/t
-ype1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/t
-imes/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8
-a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (4 pages, 66529 bytes).
+ ){/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/t
+exlive/2015/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}</usr/local/texl
+ive/2015/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/l
+ocal/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/te
+xlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015
+/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dis
+t/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
+pe1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (4 pages, 66523 bytes).
 Transcript written on Rd2.log.
 This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex)
  restricted \write18 enabled.
@@ -161,44 +152,36 @@ Package hyperref Warning: Option `pagebackref' has already been used,
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1enc.dfu)))
 Writing index file Rd2.idx
 
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.aux) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1cmr.fd)
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.aux) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1cmr.fd)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/t1ptm.fd)
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.out)
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.out) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.out)
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.out) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/t1phv.fd)
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.toc) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.toc) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
 [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [2]
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
-Overfull \hbox (36.78104pt too wide) in paragraph at lines 167--167
- []\T1/zi4/m/n/9 a <- Simulation(n = 534, parameter = TRUE, B = 10000, ta = 3, 
-tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)[] 
-[3]
-Overfull \hbox (41.28104pt too wide) in paragraph at lines 171--171
- []\T1/zi4/m/n/9 b <- Simulation(n = 534, parameter = FALSE, B = 10000, ta = 3,
- tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)[] 
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [3]
 No file Rd2.ind.
 [4]
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.aux) )
-(see the transcript file for additional information){/usr/local/texlive/2015/te
-xmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2015/texmf-dist/fonts/
-enc/dvips/inconsolata/i4-t1-0.enc}</usr/local/texlive/2015/texmf-dist/fonts/typ
-e1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2015/texmf-dist/
-fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/t
-ype1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/t
-imes/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8
-a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (4 pages, 66996 bytes).
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.aux) ){/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.
+enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc
+}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/inconsolata/Inconsolata
+-zi4r.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.p
+fb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/l
+ocal/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texli
+ve/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (4 pages, 66987 bytes).
 Transcript written on Rd2.log.
 This is makeindex, version 2.15 [TeX Live 2015] (kpathsea + Thai support).
 Scanning input file Rd2.idx....done (3 entries accepted, 0 rejected).
@@ -266,51 +249,42 @@ Package hyperref Warning: Option `pagebackref' has already been used,
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1enc.dfu)))
 Writing index file Rd2.idx
 
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.aux) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1cmr.fd)
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.aux) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1cmr.fd)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/t1ptm.fd)
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.out)
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.out) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.out)
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.out) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/t1phv.fd)
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.toc) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.toc) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
 [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [2]
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
-Overfull \hbox (36.78104pt too wide) in paragraph at lines 167--167
- []\T1/zi4/m/n/9 a <- Simulation(n = 534, parameter = TRUE, B = 10000, ta = 3, 
-tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)[] 
-[3]
-Overfull \hbox (41.28104pt too wide) in paragraph at lines 171--171
- []\T1/zi4/m/n/9 b <- Simulation(n = 534, parameter = FALSE, B = 10000, ta = 3,
- tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)[] 
-
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.ind [4] [5])
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.aux)
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [3]
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.ind [4] [5])
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.aux)
 
 Package rerunfilecheck Warning: File `Rd2.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
 
- )
-(see the transcript file for additional information){/usr/local/texlive/2015/te
-xmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2015/texmf-dist/fonts/
-enc/dvips/inconsolata/i4-t1-0.enc}</usr/local/texlive/2015/texmf-dist/fonts/typ
-e1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2015/texmf-dist/
-fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/t
-ype1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/t
-imes/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8
-a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (5 pages, 67559 bytes).
+ ){/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/t
+exlive/2015/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc}</usr/local/texl
+ive/2015/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4r.pfb></usr/l
+ocal/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/te
+xlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015
+/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dis
+t/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/ty
+pe1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (5 pages, 67551 bytes).
 Transcript written on Rd2.log.
 This is makeindex, version 2.15 [TeX Live 2015] (kpathsea + Thai support).
 Scanning input file Rd2.idx....done (3 entries accepted, 0 rejected).
@@ -378,46 +352,37 @@ Package hyperref Warning: Option `pagebackref' has already been used,
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1enc.dfu)))
 Writing index file Rd2.idx
 
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.aux) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1cmr.fd)
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.aux) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/ts1cmr.fd)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/t1ptm.fd)
 (/usr/local/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 ) (/usr/local/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 (/usr/local/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty))
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.out)
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.out) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.out)
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.out) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/inconsolata/t1zi4.fd)
 (/usr/local/texlive/2015/texmf-dist/tex/latex/psnfss/t1phv.fd)
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.toc) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.toc) (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
 [1{/usr/local/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 (/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [2]
-(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def)
-Overfull \hbox (36.78104pt too wide) in paragraph at lines 167--167
- []\T1/zi4/m/n/9 a <- Simulation(n = 534, parameter = TRUE, B = 10000, ta = 3, 
-tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)[] 
-[3]
-Overfull \hbox (41.28104pt too wide) in paragraph at lines 171--171
- []\T1/zi4/m/n/9 b <- Simulation(n = 534, parameter = FALSE, B = 10000, ta = 3,
- tf = 1, m0 = 1, delta = 1/1.2, k = 0.1)[] 
-
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.ind [4] [5])
-(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/RtmpyPdD82/Rd2pdf6011
-76417861/Rd2.aux) )
-(see the transcript file for additional information){/usr/local/texlive/2015/te
-xmf-dist/fonts/enc/dvips/base/8r.enc}{/usr/local/texlive/2015/texmf-dist/fonts/
-enc/dvips/inconsolata/i4-t1-0.enc}</usr/local/texlive/2015/texmf-dist/fonts/typ
-e1/public/inconsolata/Inconsolata-zi4r.pfb></usr/local/texlive/2015/texmf-dist/
-fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/t
-ype1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/t
-imes/utmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8
-a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on Rd2.pdf (5 pages, 67787 bytes).
+(/usr/local/texlive/2015/texmf-dist/tex/latex/base/utf8.def) [3]
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.ind [4] [5])
+(/private/var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T/Rtmpt7y7n7/Rd2pdf98e3
+14229c78/Rd2.aux) ){/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.
+enc}{/usr/local/texlive/2015/texmf-dist/fonts/enc/dvips/inconsolata/i4-t1-0.enc
+}</usr/local/texlive/2015/texmf-dist/fonts/type1/public/inconsolata/Inconsolata
+-zi4r.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.p
+fb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/l
+ocal/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texli
+ve/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2015/te
+xmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on Rd2.pdf (5 pages, 67775 bytes).
 Transcript written on Rd2.log.
 Saving output to ‘logRank1s-manual.pdf’ ...
 Done
-You may want to clean up by 'rm -Rf /var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T//RtmpyPdD82/Rd2pdf601176417861'
+You may want to clean up by 'rm -Rf /var/folders/5w/497xtdm11t1_0x7jbz3nrrr80000gp/T//Rtmpt7y7n7/Rd2pdf98e314229c78'
