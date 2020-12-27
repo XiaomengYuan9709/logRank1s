@@ -35,4 +35,5 @@ SampleSize <- function(alpha = 0.05, power, ta, tf, m0, delta, k=1) {
     w <- p1 - p0
     sigma <- (p1 - p1^2 + 2 * p00 - p0^2 - 2 * p01 + 2 * p0 * p1)^0.5
     n <- ceiling((p0^0.5 * qnorm(1 - alpha) + sigma * qnorm(power))^2/w^2)
+    return(n)
 }
