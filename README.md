@@ -3,4 +3,4 @@ The one-sample log-rank test is a type of statistical test that can be used when
 The goal of this package is to provide functions that can be used by clinical and epidemiological researchers to calculate sample size, power, and perform simulation study to check empirical type I error and power in the one-sample log-rank test. The statistical methods used in this package and the examples mentioned in this vignettes are based on methods and examples described in Wu, 2015.  
 
 References
-Wu, J. R. (2015). Sample size calculation for the one-sample log-rank test. Pharmaceutical Statistics, 14, 26?33. https://doi.org/10.1002/pst.1654
+Wu, J. R. (2015). Sample size calculation for the one-sample log-rank test. Pharmaceutical Statistics, 14, 26-33. https://doi.org/10.1002/pst.1654
